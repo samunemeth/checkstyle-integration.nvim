@@ -134,8 +134,8 @@ function M._convert_checkstyle_output_to_diagnostic(namespace, output)
             namespace = namespace
         };
         if (line_col ~= nil) then
-            d.col = tonumber(line_col)
-            d.end_col = tonumber(line_col) + 1
+            d.col = tonumber(line_col) - 1
+            d.end_col = tonumber(line_col)
         else
             d.col = 0
         end
