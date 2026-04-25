@@ -52,11 +52,8 @@ function M.java_checkstyle()
         hide = vim.fn.has("win32") == 1,
         stdio = { stdin, stdout, stderr }
     }, function(code, signal)
-        if code < 0 or code > 2 then
-            vim.schedule(function()
-                vim.notify("Checkstyle exited with code " .. code .. " and signal " .. signal, vim.diagnostic.severity.WARN)
-            end)
-        end
+        -- Checkstyle puts the number of violations into the exit code,
+        -- so sending a notification about it does not provide new information.
     end)
     if not handle then
         print("Handle unexpected close")
