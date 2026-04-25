@@ -52,7 +52,7 @@ function M.java_checkstyle()
         hide = vim.fn.has("win32") == 1,
         stdio = { stdin, stdout, stderr }
     }, function(code, signal)
-        if code ~= 0 and code ~= 1 then
+        if code < 0 or code > 2 then
             vim.schedule(function()
                 vim.notify("Code " .. code .. "; Signal " .. signal, vim.diagnostic.severity.WARN)
             end)
