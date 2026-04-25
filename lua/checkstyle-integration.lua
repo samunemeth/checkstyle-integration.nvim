@@ -36,6 +36,11 @@ function M.setup(opts)
 end
 
 function M.java_checkstyle()
+    if M.checkstyle_file == nil then
+        vim.notify("No checkstyle file set", vim.diagnostic.severity.ERROR)
+        return
+    end
+
     local namespace = vim.api.nvim_create_namespace("checkstyle")
     local handle;
     local pid_or_err;
