@@ -10,7 +10,7 @@ local DIAGNOSTIC_MAP = {
 
 function M.setup(opts)
     if opts.checkstyle_file == nil then
-        vim.notify("No checkstyle file set", vim.diagnostic.severity.ERROR)
+        vim.notify("No checkstyle file set", vim.log.levels.ERROR)
         return
     end
 
@@ -37,7 +37,7 @@ end
 
 function M.java_checkstyle()
     if M.checkstyle_file == nil then
-        vim.notify("No checkstyle file set", vim.diagnostic.severity.ERROR)
+        vim.notify("No checkstyle file set", vim.log.levels.ERROR)
         return
     end
 
@@ -70,7 +70,7 @@ function M.java_checkstyle()
 
     uv.read_start(stdout, function(err, data)
         if err then
-            vim.notify("No checkstyle file set", vim.diagnostic.severity.ERROR)
+            vim.notify("No checkstyle file set", vim.log.levels.ERROR)
             -- TODO
         elseif data then
             output = output .. data
@@ -93,9 +93,9 @@ function M.java_checkstyle()
                 local old_cmd_height = vim.o.cmdheight;
                 vim.o.cmdheight = old_cmd_height + 1;
                 if line_count == 0 then
-                    vim.notify("No checkstyle violations", vim.diagnostic.severity.INFO)
+                    vim.notify("No checkstyle violations", vim.log.levels.INFO)
                 else
-                    vim.notify("Found " .. line_count .. " checkstyle violation(s)", vim.diagnostic.severity.WARN)
+                    vim.notify("Found " .. line_count .. " checkstyle violation(s)", vim.log.levels.WARN)
                 end
                 if old_cmd_height == nil then
                     vim.o.cmdheight = 1;
