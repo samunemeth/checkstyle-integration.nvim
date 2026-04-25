@@ -13,7 +13,7 @@ For example in Lazy.nvim add following to your plugins and correct the path
         checkstyle_file = "<your path to the checkstyle file>",
         checkstyle_on_write = true,
         -- uses always this severity level (nil or omitting uses the checkstyle's severity)
-        force_diagnostic = "WARN",  -- can be IGNORE, INFO, WARN, ERROR
+        force_severity = "WARN",  -- can be IGNORE, INFO, WARN, ERROR
         pattern = {"*.java"},  -- the pattern for the autocommand (defaults to {*.java})
     },
 },
