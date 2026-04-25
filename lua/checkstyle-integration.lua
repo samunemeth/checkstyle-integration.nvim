@@ -54,7 +54,7 @@ function M.java_checkstyle()
     }, function(code, signal)
         if code < 0 or code > 2 then
             vim.schedule(function()
-                vim.notify("Code " .. code .. "; Signal " .. signal, vim.diagnostic.severity.WARN)
+                vim.notify("Checkstyle exited with code " .. code .. " and signal " .. signal, vim.diagnostic.severity.WARN)
             end)
         end
     end)
@@ -91,11 +91,11 @@ function M.java_checkstyle()
                 local old_cmd_height = vim.o.cmdheight;
                 vim.o.cmdheight = old_cmd_height + 1;
                 if line_count == 0 then
-                    print("You are good to go; No violations from checkstyle found", "")
+                    print("No checkstyle violations")
                 elseif line_count == 1 then
-                    print("Found", line_count, "check style violation")
+                    print("Found", line_count, "checkstyle violation")
                 else
-                    print("Found", line_count, "check style violations")
+                    print("Found", line_count, "checkstyle violations")
                 end
                 if old_cmd_height == nil then
                     vim.o.cmdheight = 1;
@@ -147,3 +147,4 @@ function M._convert_checkstyle_output_to_diagnostic(namespace, output)
 end
 
 return M;
+
